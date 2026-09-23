@@ -52,34 +52,34 @@ public class ListaEncadeada<T> implements IColecao<T> {
         this.quantidade++;
     }
 
-    // copiado e colado: "Lista Ordenada com Comparator"
+    
     public void inserirElementoOrd(T elem) {
         No<T> novo = new No<T>(elem);
         No<T> atual, ant;
         atual = this.prim;
         ant = null;
 
-        // se a lista está vazia, apenas adiciona como prim e ult
+        
         if(this.prim == null)
             this.prim = this.ult = novo;
         else{
-            // iterar até achar um elemento igual ou maior que o novo, ou um null
+            
             while(atual != null && comparador.compare(atual.getValor(), elem) < 0){
                 ant = atual;
                 atual = atual.getProx();
             }
 
-            // se ant == null, o novo elemento é menor que o primeiro
+            
             if(ant == null){
                 novo.setProx(this.prim);
                 this.prim = novo;
             }
-            // se atual for null, novo deve ser o último
+            
             else if(atual == null){
                 this.ult.setProx(novo);
                 this.ult = novo;
             }
-            // se não for prim nem ult, entrara entre o ant e o atual
+            
             else{
                 ant.setProx(novo);
                 novo.setProx(atual);
@@ -88,7 +88,7 @@ public class ListaEncadeada<T> implements IColecao<T> {
         this.quantidade++;
     }
 
-    // copiado e colado: "Buscar na Lista"
+    
     public T contemElemento(T elem) {
         No<T> aux = this.prim;
         while (aux != null){
@@ -99,23 +99,23 @@ public class ListaEncadeada<T> implements IColecao<T> {
         return null;
     }
 
-    // copiado e colado: "Excluir da Lista"
+    
     public boolean excluirElemento(T elem) {
         No<T> aux = this.prim;
         No<T> ant = null;
-        while (aux != null){ // lista não está vazia
+        while (aux != null){ 
             if (aux.getValor().equals(elem)) {
-                // se for o primeiro, o prim se torna o segundo o próximo
+                
                 if(aux == this.prim){
                     this.prim = this.prim.getProx();
-                    // também é o ult, prim = ult = null
+                    
                     if(aux == this.ult)
                         this.ult = null;
                 }
-                //Se não é o primeiro, o anterior passa a apontar para o proximo
+                
                 else{
                     ant.setProx(aux.getProx());
-                    // se é o último, ult passa a ser o anterior
+                    
                     if(aux == this.ult)
                         this.ult = ant;
                 }
